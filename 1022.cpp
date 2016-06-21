@@ -31,8 +31,14 @@ int main() {
        result.push_back(plus % D);
        plus /= D;
     }
-    for (int i = result.size() - 1; i >= 0; --i)
-        cout << result[i];
+    for (auto p = result.cend(); true ; ) {
+        --p;
+        cout << *p;
+        if (p == result.cbegin())
+            break;
+    }
+    // for (int i = result.size() - 1; i >= 0; --i)
+    //     cout << result[i];
     cout << endl;
     return 0;
 }
