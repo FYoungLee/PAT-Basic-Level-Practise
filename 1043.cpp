@@ -21,18 +21,16 @@ int main() {
     string ipt;
     cin >> ipt;
     if (ipt.size() > 10000) return -1;
-    for (auto p = ipt.begin(); p != ipt.end(); ) {
-        if (sample.find(*p) == string::npos) {
-            ipt.erase(p);
-            p = ipt.begin();
-        } else ++p;
-    }
+    string res;
+    for (auto p = ipt.begin(); p != ipt.end(); ++p)
+        if (sample.find(*p) != string::npos)
+            res += std::move(*p);
     size_t index(0);
-    while (ipt.size()) {
-        size_t n = ipt.find(sample[index]);
+    while (res.size()) {
+        size_t n = res.find(sample[index]);
         if (n != string::npos) {
             cout << sample[index];
-            ipt.erase(ipt.begin() + n);
+            res.erase(res.begin() + n);
         }
         ++index;
         if (index > sample.size() - 1)
@@ -41,3 +39,4 @@ int main() {
     cout << endl;
     return 0;
 }
+
